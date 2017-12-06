@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import Menu2 from './MenuList2';
 
 
 
@@ -9,10 +8,10 @@ class MenuList1 extends Component {
     render() {
 
         return (
-            <View style={styles.viewStyle}>
+            <View style={styles.pdt}>
                 <TouchableOpacity onPress={this.props.onPress}
-                    style={[styles.viewStyle, {backgroundColor: this.props.isPressed? 'green' : '#56B9D0'}]}>
-                    <Text numberOfLines={1}>{this.props.menu1.title}</Text>
+                    style={[styles.menu1Item, { backgroundColor: this.props.isPressed ? '#2980b9' : '#E0E0E0' }]}>
+                    <Text numberOfLines={1} style={{ paddingBottom: 6, fontSize: 16, color: this.props.isPressed ? 'white' : '#424242' }}>{this.props.menu1.title}</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -21,23 +20,20 @@ class MenuList1 extends Component {
 }
 
 const styles = {
-    viewStyle: {
-        width: 150,
-        backgroundColor: '#56B9D0',
-        justifyContent: 'center',
+    menu1Item: {
+        marginLeft: 1,
+        marginRight: 1,
+        height: 40,
+        width: 300,
         alignItems: 'center',
-        height: 60,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        elevation: 10,
-        position: 'relative'
+        justifyContent: 'center',
+        padding: 10
     },
-    textStyle: {
-        fontSize: 15,
-        paddingBottom:20
+    pdt: {
+        paddingTop: 10
     }
-};
+}
+
 
 
 export default MenuList1;

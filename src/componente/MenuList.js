@@ -7,8 +7,12 @@ class MenuList extends Component {
 
     state = {   menus: this.props.data.menuTrees[1].menuTree, 
                 selected: 0, 
-                languange: 'English' 
+                pages: this.props.data.pages
     };
+
+    componentDidUpdate() {
+        // this.refs._scrollView2.scrollTo({ y: 0, x: 0, animated: true });
+    }
 
     renderMenu1() {
         return this.state.menus.map((menu, i) => 
@@ -23,7 +27,11 @@ class MenuList extends Component {
         if (this.state.menus[this.state.selected]) {
             if (this.state.menus[this.state.selected].children) {
                 return this.state.menus[this.state.selected].children.map(child =>
-                    <Menu2 key={child.menuId} menu2={child} />
+                    <Menu2 key={child.menuId}
+                    menu2={child} 
+                    pages = {global.globalJson.pages}
+                    isPressed={this.props.from == child.menuId ? true : false}
+                    />
                 );
             }
         }
@@ -31,7 +39,7 @@ class MenuList extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.mainCont}>
                 <ScrollView horizontal={true} style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                     {this.renderMenu1()}
                 </ScrollView>
@@ -40,6 +48,19 @@ class MenuList extends Component {
                 </ScrollView>
             </View>
         )
+    }
+}
+const styles = {
+    menu1Container: {
+        flexDirection: 'row',
+        
+    },
+    mainCont: {
+        backgroundColor: 'white',
+        paddingBottom: 0,
+        position: 'absolute', 
+        bottom: 70
+        
     }
 }
 
