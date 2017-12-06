@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Menu3 from './MenuList3';
+import { Actions } from 'react-native-router-flux';
 
 
 class MenuList2 extends Component {
 
+    state = { filteredPages: [] }
+
+    componentWillMount() {
+        this.filterPages();
+    }
+
     renderTreciNivo() {
         if (this.props.menu2.children) {
             return this.props.menu2.children.map(ch =>
-                <Menu3 key={ch.menuId} dzo={ch} />
+                <Menu3 key={ch.menuId}
+                    dzo={ch}
+                    pages = {this.props.pages}
+                    isPressed={this.props.from == ch.menuId ? true : false}
+                />
             )
         }
+    }
+    filterPages() {
+        var a = this.props.pages.filter(elem => { return elem.menuId == this.props.menu2.menuId })
+        this.setState({filteredPages: a})
     }
     render() {
         return (
             <View>
-                <View style={styles.viewStyle}>
+                <View style={styles.viewStyle} onPress={() => Actions.HBF({from: this.props.ch, filtered: this.state.filteredPages})}>
                     <Text style={styles.textStyle}>{this.props.menu2.title}</Text>
                 </View>
                 <View>

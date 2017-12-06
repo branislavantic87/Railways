@@ -251,8 +251,7 @@ class Importing extends Component {
             //console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
             return (
                 <View>
-                    <Header headerText={'RailWays'} />
-                    <View>
+                    {/* <View>
                         <Image style={styles.imageStyle} await source={{ uri: `file://${RNFB.fs.dirs.DocumentDir}/fajlovi/1209.jpg` }} />
                         <Text>{''}</Text>
                     </View>
@@ -277,7 +276,7 @@ class Importing extends Component {
                             onBuffer={this.onBuffer}                // Callback when remote video is buffering
                             onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata
                             style={{ width: 300, height: 300 }} />
-                    </View>
+                    </View> */}
                     <ScrollView>
                         <MenuList data={this.state.data} />
                     </ScrollView>
@@ -308,7 +307,6 @@ const styles = {
     imageStyle: {
         width: 200,
         height: 200,
-        backgroundColor: 'black',
     }
 }
 

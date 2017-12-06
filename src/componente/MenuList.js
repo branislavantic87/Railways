@@ -7,7 +7,8 @@ class MenuList extends Component {
 
     state = {   menus: this.props.data.menuTrees[1].menuTree, 
                 selected: 0, 
-                languange: 'English' 
+                languange: 'English',
+                pages: this.props.data.pages
     };
 
     renderMenu1() {
@@ -23,7 +24,10 @@ class MenuList extends Component {
         if (this.state.menus[this.state.selected]) {
             if (this.state.menus[this.state.selected].children) {
                 return this.state.menus[this.state.selected].children.map(child =>
-                    <Menu2 key={child.menuId} menu2={child} />
+                    <Menu2 key={child.menuId}
+                    menu2={child} 
+                    pages = {this.state.pages}
+                    />
                 );
             }
         }
@@ -31,7 +35,7 @@ class MenuList extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.mainCont}>
                 <ScrollView horizontal={true} style={{ flexDirection: 'row' }} showsHorizontalScrollIndicator={false}>
                     {this.renderMenu1()}
                 </ScrollView>
@@ -40,6 +44,19 @@ class MenuList extends Component {
                 </ScrollView>
             </View>
         )
+    }
+}
+const styles = {
+    menu1Container: {
+        flexDirection: 'row',
+        
+    },
+    mainCont: {
+        backgroundColor: 'white',
+        paddingBottom: 0,
+        position: 'absolute', 
+        bottom: 70
+        
     }
 }
 
